@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FormOnline.Models.Stat>
+
+@{
+    ViewBag.Title = "StatForm";
+    string formName = ViewData["FormName"].ToString();
+}
+
+<h3>Statistiques</h3>
+<br />
+<h4>Formulaire : @formName</h4>
+
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            Question
+        </th>
+        <th>
+            Réponse
+        </th>
+    </tr>
+    @foreach(var stat in Model)
+    {
+        <tr>
+            <td>
+                @stat.question.QuestionLabel
+            </td>
+            <td>
+                @stat.answer.AnswerLabel
+            </td>
+        </tr>
+    }
+</table>
+<br />
+@Html.ActionLink("Retour à liste des formulaires", "Index", "Data")

@@ -1,0 +1,40 @@
+﻿@model FormOnline.Models.Question
+
+@{
+    ViewBag.Title = "AddQuestion";
+}
+
+<h2>Ajouter une nouvelle question</h2>
+
+@using (Html.BeginForm("AddQuestionValidate", "Question", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Question</legend>
+
+        @Html.HiddenFor(model => model.FormId)
+        @Html.ValidationMessageFor(model => model.FormId)
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.QuestionLabel)*@
+            Libellé de la question
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.QuestionLabel)
+            @Html.ValidationMessageFor(model => model.QuestionLabel)
+        </div>
+
+        <p>
+            <input type="submit" value="Ajouter" class="btn btn-default" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Retour à la liste de questions", "Index", "Question")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

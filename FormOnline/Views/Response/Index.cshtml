@@ -1,0 +1,25 @@
+﻿@model IEnumerable<FormOnline.Models.Form>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Liste des formulaires disponibles et non clôturés</h3>
+
+@{
+    if (Model != null)
+    {          
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @item.Title : <a href="@item.Url"><b>Répondre au formulaire</b></a>
+            </li>
+        }
+    </ul>  
+    }
+    else
+    {
+    <h3>Pas de formulaires disponibles pour le moment</h3>
+    }
+}

@@ -1,0 +1,47 @@
+﻿@model FormOnline.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3>Détails de la question</h3>
+
+<fieldset>
+    <legend>Question</legend>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.FormId)*@
+        <b>Formulaire</b>
+    </div>
+    <div class="form-group">
+        @*@Html.DisplayFor(model => model.FormId)*@
+        @Model.form.Title
+    </div>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.QuestionLabel)*@
+        <b>Libellé de la question</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.QuestionLabel)
+    </div>
+
+    <br />
+    @{
+        if(Model.Answers != null)
+        {
+            @Html.Label("Nombre de réponses pour cette question : " + Model.Answers.Count)
+        }
+        else
+        {
+            @Html.Label("Pas de réponses pour cette question : ")
+        }
+    }
+    <br />
+    @Html.ActionLink("Créer une réponse", "Create", "Answer", new { id=Model.QuestionId },"")
+    <br /><br />
+</fieldset>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id=Model.QuestionId }) |
+    @Html.ActionLink("Retour à la liste des questions", "Index", "Question","","")
+</p>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<FormOnline.Models.Answer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des réponses</h2>
+<br />
+<div class="form-group">
+    <p>
+        <button type="button">@Html.ActionLink("Créer une nouvelle réponse", "CreateWithChoiceQuestion", "", "btn btn-primary btn-lg active")</button>
+    </p>
+</div>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Formulaire</th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.QuestionId)*@
+            Question
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AnswerLabel)*@
+            Libellé de la réponse
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.question.form.Title
+            </td>
+            <td>
+                @item.question.QuestionLabel
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerLabel)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.AnswerId })
+            </td>
+            <td>
+                @Html.ActionLink("Détails", "Details", new { id = item.AnswerId })
+            </td>
+            <td>
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.AnswerId })
+            </td>
+        </tr>
+    }
+
+</table>

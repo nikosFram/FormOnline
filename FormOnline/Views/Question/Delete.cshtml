@@ -1,0 +1,40 @@
+﻿@model FormOnline.Models.Question
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Suppression d'un question</h3>
+<br />
+<h4>Voulez-vous supprimer la question @Model.QuestionLabel ?</h4>
+<br />
+<p><b>La suppresion de cette question engendra des pertes de données irréversibles</b></p>
+<p>Les réponses et statistiques concernant cette question seront supprimées</p>
+<br />
+<fieldset>
+    <legend>Question</legend>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.FormId)*@
+         <b>Formulaire</b>
+    </div>
+    <div class="form-group">
+        @*@Html.DisplayFor(model => model.FormId)*@
+        @Model.form.Title
+    </div>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.QuestionLabel)*@
+        <b>Libellé de la question</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.QuestionLabel)
+    </div>
+</fieldset>
+<br />
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Supprimer" class="btn btn-default" /> |
+        @Html.ActionLink("Retour à la liste des questions", "Index", "Question","","")
+    </p>
+}

@@ -1,0 +1,11 @@
+﻿@model FormOnline.Models.Form
+
+@{
+    ViewBag.Title = "ShowPath";
+}
+
+<h2>Ajout du formulaire réussi</h2>
+<p>Le formulaire @Model.Title a été créé avec succès. Vous pouvez partager le formulaire au travers du lien suivant :</p>
+<h3><a>@Model.Url</a></h3>
+
+@Html.ActionLink("Retour à liste des formulaires", "Index", "Data")

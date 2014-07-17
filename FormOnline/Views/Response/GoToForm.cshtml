@@ -1,0 +1,52 @@
+﻿﻿@model FormOnline.Models.Form
+
+@{
+    ViewBag.Title = "GoToForm";
+    string resul = ViewData["msgError"].ToString();
+    string[] splitDate = Model.ClosingDate.ToString().Split(' ');
+    string date = splitDate[0];
+}
+
+@using (Html.BeginForm("CreateStat", "Stat", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(formu => formu.FormId);
+
+    <h3>@Model.Title</h3>
+    <h4>@Model.Description</h4>
+    <br />
+    <p>Le formulaire est disponible jusqu'au @date</p>
+    <br />
+    
+    if (resul != "")
+    {
+        <br />
+        <label>@resul</label>
+        <br /><br />
+    }
+    else
+    {        
+    <table>
+        @foreach (var quest in Model.Questions)
+        {
+            <tr style="height:30px">
+                <td>
+                    <b>@Html.DisplayFor(i => quest.QuestionLabel)</b>               
+                </td>
+                <td>
+                    @Html.DropDownList(quest.QuestionId.ToString(), quest.Answers.Select(i => new SelectListItem { Text = i.AnswerLabel, Value = i.AnswerId.ToString() }))
+                </td>
+            </tr>
+        }
+    </table>
+    <p>
+        <br />
+        <input type="submit" value="Valider les réponses" />
+    </p>
+    }
+}
+
+
+
+@Html.ActionLink("Retour", "Index", "Response", new { @class = "btn btn-default" })

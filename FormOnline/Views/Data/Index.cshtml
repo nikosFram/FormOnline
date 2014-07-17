@@ -1,0 +1,97 @@
+﻿@model IEnumerable<FormOnline.Models.Form>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Liste des formulaires</h3>
+<br />
+<div class="form-group">
+    <p>
+        <button type="button">@Html.ActionLink("Ajouter un nouveau formulaire", "Create", "", "btn btn-primary btn-lg active")</button>
+    </p>
+</div>
+<div class="row">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Titre
+            </th>
+            <th>Description
+            </th>
+            <th>Date de cloture
+            </th>
+            <th>Nb de questions</th>
+            <th>Hash
+            </th>
+            <th>URL</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Etat</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClosingDate)
+                </td>
+                <td>
+                    @{
+            if (item.Questions != null)
+            {
+                        @item.Questions.Count.ToString()
+            }
+            else
+            {
+                        <label>0</label>
+            }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hash)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Url)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.FormId })
+                </td>
+                <td>
+                    @Html.ActionLink("Détails", "Details", new { id = item.FormId })
+                </td>
+                <td>
+                    @Html.ActionLink("Statistiques", "StatForm", "Stat", new { id = item.FormId }, "")
+                </td>
+                <td>
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.FormId })
+                </td>
+                @{if (item.Closed != null)
+                  {
+                      if (item.Closed != "")
+                      {
+                    <td>@Html.ActionLink("Cloturé", "NotCloture", new { id = item.FormId })</td>                   
+                      }
+                      else
+                      {
+                    <td>@Html.ActionLink("Non Cloturé", "Cloture", new { id = item.FormId })</td>
+                      }
+                  }
+                  else
+                  {
+                    <td>@Html.ActionLink("Non Cloturé", "Cloture", new { id = item.FormId })</td>
+                  }
+                }
+            </tr>
+        }
+
+    </table>
+</div>
+

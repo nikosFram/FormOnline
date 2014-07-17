@@ -1,0 +1,20 @@
+﻿@model IEnumerable<FormOnline.Models.Question>
+
+@{
+    ViewBag.Title = "CreateWithChoiceQuestion";
+}
+
+@using (Html.BeginForm("AddAnswer", "Answer", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <h3>Création d'une nouvelle réponse</h3>
+    <h4>Choix de la question</h4>
+    <br />
+    <p>Veuillez choisir la question : @Html.DropDownList("listQuestions", Model.Select(i => new SelectListItem { Text = i.QuestionLabel, Value = i.QuestionId.ToString() }))</p>
+    <br />
+    <input type="submit" value="Valider la question" class="btn btn-default" />
+}
+<br />
+<div>
+    @Html.ActionLink("Retour à la liste de réponses", "Index", "Answer")
+</div>

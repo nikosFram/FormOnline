@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FormOnline.Models.Stat>
+
+@{
+    ViewBag.Title = "Index";
+    System.Collections.ArrayList listStats = (System.Collections.ArrayList)ViewData["listStats"];
+}
+
+<h2>Statistiques</h2>
+<div class="form-group">
+    @Html.ActionLink("Export PDF des statistiques", "PDF")
+</div>
+<br />
+
+@*<p>
+    @Html.ActionLink("Ajouter une nouvelle statistique", "Create")
+</p>*@
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.FormId)*@
+            Formulaire
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.QuestionId)*@
+            Question
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.AnswerId)*@
+            Réponse
+        </th>
+        <th>
+            Nb
+        </th>
+    </tr>
+
+    @foreach (object[] obj in listStats)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.FormId)*@
+                @*@Html.ActionLink(item.form.Title, "StatForm", "Stat", new { id = item.FormId }, "")*@
+                @obj[0]
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.QuestionId)*@
+                @*@Html.ActionLink(item.question.QuestionLabel, "StatQuestion", "Stat", new { id = item.QuestionId }, "")*@
+                @obj[1]
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.AnswerId)*@
+                @*@item.answer.AnswerLabel*@
+                @obj[2]
+            </td>
+            <td>
+                @obj[3]
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,45 @@
+﻿@model FormOnline.Models.Answer
+
+@{
+    ViewBag.Title = "AddAnswer";
+}
+
+<h2>Ajouter une nouvelle réponse</h2>
+
+@using (Html.BeginForm("AddAnswerValidate", "Answer", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Answer</legend>
+
+        <div class="form-group">
+           @* @Html.LabelFor(model => model.QuestionId)*@
+        </div>
+        <div class="form-group">
+            @Html.HiddenFor(model => model.QuestionId)
+            @Html.ValidationMessageFor(model => model.QuestionId)
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.AnswerLabel)*@
+            Libellé de la réponse
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.AnswerLabel)
+            @Html.ValidationMessageFor(model => model.AnswerLabel)
+        </div>
+
+        <p>
+            <input type="submit" value="Ajouter" class="btn btn-default" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Retour à la liste de réponses", "Index", "Answer")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

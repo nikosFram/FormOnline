@@ -1,0 +1,88 @@
+﻿@model IEnumerable<FormOnline.Models.Stat>
+
+@{
+    ViewBag.Title = "StatQuestion";
+    
+    //On récupère la question
+    FormOnline.Models.Question question = (FormOnline.Models.Question)ViewData["Question"];
+    string questionLabel = question.QuestionLabel;
+    string formLabel = question.form.Title;
+
+    System.Collections.ArrayList listStatQuestion = (System.Collections.ArrayList)ViewData["listStatQuestion"];
+}
+
+<h3>Statistiques</h3>
+<div class="form-group">
+    @Html.ActionLink("Export PDF des statistiques", "PDFStatQuestion", "Stat", new { id = question.QuestionId }, "")
+</div>
+<br />
+<h4>Formulaire : @formLabel</h4>
+<h4>Question : @questionLabel</h4>
+
+@*@{
+    System.Collections.ArrayList list = new System.Collections.ArrayList();
+    foreach(var answer in question.Answers)
+    {
+        object[] obj = new object[] { answer.AnswerId, 0 };
+        list.Add(obj);
+    }
+    
+    foreach(var stat in Model)
+    {
+        foreach(object[] obj in list)
+        {
+            if(Convert.ToInt32(obj[0]) == stat.AnswerId)
+            {
+                obj[1] = Convert.ToInt32(obj[1]) + 1;
+                break;
+            }   
+        }
+    }
+}*@
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            Réponses
+        </th>
+        <th>
+            Nb de fois répondu
+        </th>
+    </tr>
+    @foreach (object[] obj in listStatQuestion)
+    {
+        <tr>
+            <td>
+                @obj[0]
+            </td>
+            <td>
+                @obj[1]
+            </td>
+        </tr>
+    }
+
+    @*@foreach(var answer in question.Answers)
+    {
+        <tr>
+            <td>
+                @answer.AnswerLabel
+            </td>
+            <td>
+                @{
+                    string nbfois = "";
+                    foreach(object[] obj in list)
+                    {
+                        if(Convert.ToInt32(obj[0]) == answer.AnswerId)
+                        {
+                            nbfois = obj[1].ToString();
+                            break;
+                        }
+                    }   
+                }
+                @nbfois
+            </td>
+        </tr>
+    }*@
+</table>
+<br />
+@Html.ActionLink("Retour à liste des questions", "Index", "Question")

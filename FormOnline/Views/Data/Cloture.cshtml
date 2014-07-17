@@ -1,0 +1,42 @@
+﻿@model FormOnline.Models.Form
+
+@{
+    ViewBag.Title = "Cloture";
+}
+
+<h3>Cloture de formulaire</h3>
+<h4>Voulez-vous vraiment cloturer le formulaire : @Model.Title ?</h4>
+<fieldset>
+    <legend>Form</legend>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.Title)*@
+        <b>Titre</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.Description)*@
+        <b>Description</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.ClosingDate)*@
+        <b>Date de clôture</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.ClosingDate)
+    </div>
+    
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Cloturer" class="btn btn-default" /> |
+        @Html.ActionLink("Retour à liste des formulaires", "Index", "Data")
+    </p>
+}

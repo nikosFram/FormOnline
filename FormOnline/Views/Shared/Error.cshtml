@@ -1,0 +1,14 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Erreur";
+}
+
+<hgroup class="title">
+    <h1 class="error">Erreur</h1>
+    <br /><br />
+    <h2 class="error">Une erreur s'est produite sur l'application</h2>
+    <br />
+    <h3 class="error">Merci de contacter l'administrateur si le problème persiste</h3>
+</hgroup>
+@Html.ActionLink("Retour à l'application", "Index", "Home","","")

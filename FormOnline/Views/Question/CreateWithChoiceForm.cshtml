@@ -1,0 +1,19 @@
+﻿@model IEnumerable<FormOnline.Models.Form>
+
+@{
+    ViewBag.Title = "CreateWithChoiceForm";
+}
+
+@using (Html.BeginForm("AddQuestion", "Question", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <h3>Création d'une nouvelle question</h3>
+    <h4>Choix du formulaire</h4>
+    <p>Veuillez choisir un formulaire : @Html.DropDownList("listForms", Model.Select(i => new SelectListItem { Text = i.Title, Value = i.FormId.ToString() }))</p>
+    <input type="submit" value="Valider le formulaire" class="btn btn-default" />
+}
+
+<br />
+<div>
+    @Html.ActionLink("Retour à la liste de questions", "Index", "Question")
+</div>

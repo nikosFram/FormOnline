@@ -1,0 +1,29 @@
+﻿@using iTextSharp.text;
+@using iTextSharp.text.pdf;
+
+@model IEnumerable<FormOnline.Models.Stat>
+
+
+@{
+    ViewBag.Title = "PDF";
+    Layout = null;
+}
+
+
+@*<table style="background-color:lightgray">
+    <tr>
+        <td>Formulaire</td>
+        <td>Question</td>
+        <td>Réponse</td>
+    </tr>
+    @foreach (var stat in Model)
+    {
+        <tr>
+            <td>@stat.form.Title</td>
+
+            <td>@stat.question.QuestionLabel</td>
+
+            <td>@stat.answer.AnswerLabel</td>
+        </tr>
+    }
+</table>*@

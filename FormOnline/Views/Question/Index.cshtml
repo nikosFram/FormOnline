@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FormOnline.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des questions</h2>
+<br />
+<div class="form-group">
+    <p>
+        <button type="button">@Html.ActionLink("Créer une nouvelle question", "CreateWithChoiceForm", "", "btn btn-primary btn-lg active")</button>
+    </p>
+</div>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.FormId)*@
+            Formulaire
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.QuestionLabel)*@
+            Libellé de la question
+        </th>
+        <th>Nb de réponses
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.form.Title
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionLabel)
+            </td>
+            <td>
+                @item.Answers.Count.ToString()
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", "Edit", new { id = item.QuestionId })
+            </td>
+            <td>
+                @Html.ActionLink("Détails", "Details", new { id = item.QuestionId })
+            </td>
+            <td>
+                @Html.ActionLink("Statistiques", "StatQuestion", "Stat", new { id = item.QuestionId }, "")
+            </td>
+            <td>
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.QuestionId })
+
+            </td>
+        </tr>
+    }
+
+</table>

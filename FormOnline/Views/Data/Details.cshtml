@@ -1,0 +1,70 @@
+﻿@model FormOnline.Models.Form
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3>Détails du formulaire</h3>
+<br />
+
+<fieldset>
+    <legend>Form</legend>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.Title)*@
+        <b>Titre</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.Description)*@
+        <b>Description</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="form-group">
+         @*@Html.DisplayNameFor(model => model.ClosingDate)*@
+        <b>Date de cloture</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.ClosingDate)
+    </div>
+
+    <div class="form-group">
+         <b>@Html.DisplayNameFor(model => model.Hash)</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.Hash)
+    </div>
+
+    <div class="form-group">
+         <b>@Html.DisplayNameFor(model => model.Url)</b>
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(model => model.Url)
+    </div>
+    <br />
+    @{
+        if(Model.Questions != null)
+        {
+            @Html.Label("Nombre de questions pour ce formulaire : " + Model.Questions.Count)
+        }
+        else
+        {
+            @Html.Label("Pas de questions pour ce formulaire : ")
+        }
+    }
+    <br />
+    <br />
+    @Html.ActionLink("Créer une question", "Create", "Question", new { id=Model.FormId },"")
+    <br /><br />
+    @Html.ActionLink("Cloturer le formulaire", "Cloture", "Data", new { id=Model.FormId },"")
+    <br /><br />
+</fieldset>
+<p>
+    @Html.ActionLink("Modifier", "Edit","Data", new { id=Model.FormId }) | @Html.ActionLink("Retour à liste des formulaires", "Index", "Data")
+</p>
